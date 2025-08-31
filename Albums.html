@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> المعرض</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+      <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.css">
+      <style>
+        
+      </style>
+</head>
+<body>
+    <div id="back">
+        <!--بداية الناف بار-->        
+                <nav id="navbar">
+                 <div class="navcont">
+                    <div class="lglink">
+                <!-- الشعار على اليمين -->
+                        <img src="/موقع محمد الفارس/logo(mo).png" class="logo" alt="الشعار">
+                
+                <!-- القائمة بجانب الشعار -->
+                        <ul class="nav-links">
+                            <li><a href="home.HTML">الصفحة الرئيسية</a></li>
+                            <li><a href="Albums.html">المعرض</a></li>
+                            <li><a href="#footer1">للتواصل</a></li>
+                        </ul>
+                    </div>
+                <!-- الزر على اليسار -->
+                    <div class="bu1-1">
+                      <button class="bureserv2" ><a style="text-decoration: none; color: #D4AF37 ;" href="Reservation.html">احجز الآن</a></button>
+                    </div>
+                </div>
+       </nav>
+       <section id="المعرض">
+       
+        <div class="title-m">
+            <h1>المعرض</h1>
+        </div>
+    <!--نهاية الناف بار--> 
+    <!------------------المحتتتتتتتتتتتتتووووووووى------------------------>
+
+    <!--شريط البحث -->
+         <form class="d-flex justify-content-center m-5 gap-2" dir="rtl">
+     <!--حقل البحث-->
+        <input id="search" class="form-control w-30" type="search" placeholder="ابحث في المعرض..." aria-label="Search">
+
+    <!--زر البحث-->
+        <button class="btn btn-dark " type="submit">بحث</button>
+         </form>
+
+         <div class="container py-5">
+        
+      
+            <!-- المؤشر -->
+            <div id="loading" class="text-center my-5">
+              <div class="spinner-border text-dark" role="status"></div>
+              <p class="mt">جاري تحميل المناسبات...</p>
+            </div>
+            <!--البطاقات-->
+            <div id="albums" class="row g-4"></div>
+          </div>
+         
+
+       </section>
+
+       <!-------------------------------Foooter-------------------->
+   <footer class="footer" id="footer1">
+            
+    <div class="footer-logo">
+        <img class="img-footer"  src="/موقع محمد الفارس/logo(mo).png">
+    </div> 
+        <h4>للتواصل</h4>
+    <div class="ii">
+        <a href="https://www.tiktok.com/@x_idzz?_t=ZS-8taDG3Nvnxo&_r=1" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.snapchat.com/add/x_idzz" target="_blank"><i class="fa-brands fa-snapchat"></i></a>
+        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://m.youtube.com/channel/UCS-agE6_uZUu_nkFPK7ocOQ" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+   </footer>
+    </div>
+    <!---------------------script--------------->
+      <!--مكتبة papapares-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+    <script>
+        //رابط من قوقل شيت بصيغة csv
+        const csvUrl= "https://docs.google.com/spreadsheets/d/e/2PACX-1vTyAVi3If7JA9kjkO1iF1OZQwAJQLvME54t9cNWmICK3NYSJRQfkbkj0s3PWEskl0f6VNctZA9aD56d/pub?output=csv";
+       
+        // دالة عرض الالبومات
+        function displayAlbums(names, albums){
+            const container = document.getElementById("albums");
+            container.innerHTML=""// تفريغ القديم
+
+            names.forEach(eventName => {//نمر على كل اسم البوم
+                const images = albums[eventName]//الصور الخاصه بالالبوم
+                const thumbnailUrl = images[0]//نستخدم اول صوره كغلاف
+            
+
+            const col = document.createElement("div");
+            col.className ="col-12 col-sm-6 col-lg-4 mb-4"
+
+            col.innerHTML=`
+               <div class="card text-center shadow-lg border-0" style="  height:100%; ;border-radius: 15px; overflow: hidden;">
+                <!--صورة الغلاف-->
+                <img src="${thumbnailUrl}" class="card-img-top" alt="صورة" loading="lazy" style=" width: 100% ; height:100%; object-fit:contain">
+                <!--جسم البطاقة-->
+                <div class="card-body p-2 d-flex flex-column justify-content-between "  >
+                 <h6 class="card-title mb-1" style="font-size: 16px; font-weight: bold;">${eventName}</h6>
+                 <!--الزر لعرض الصور-->
+                  <a class="btn btn-sm btn-outline-dark  custom-button" style="border-radius: 20px; margin: 1rem;" onclick='showImages(${JSON.stringify(images)})'>عرض</a>
+                 </div>
+                 </div>
+            `;
+            container.appendChild(col);// نضيف البطاقة للحاوية
+ 
+        });
+        }
+
+    //دالة البحث داخل الالبومات
+          function setupSearch(albums){
+            const input = document.getElementById("search");
+            input.addEventListener('input' ,() => {
+            const value= input.value.toLowerCase();
+    // فلترة على حسب النص المكتوب
+            const filteredNames = Object.keys(albums).filter(name =>
+                name.toLowerCase().includes(value)
+            );
+            displayAlbums(filteredNames, albums );//عرض النتائج
+            });
+          }
+
+    //نستخدم p لقراءة الملف 
+           Papa.parse(csvUrl,{
+            download :true,// نزل الملف من الرابط
+            header:true,// الصف الاول = اسماء الاعمدة
+            complete: function(results){// لما ينتهي يعرض البيانات
+                const data = results.data;// البيانات جميعها
+                const albums={};// كائن يخزن الالبومات 
+        //نمر على كل صف في الشيت 
+            data.forEach(row=>{
+                const name = row.Wedding?.trim();//اسم الالبوم في قوقل شيت
+                const url = row.URL?.trim();//اسم روابط الصور في قوقل شيت
+                if(!name || !url)return;//لو الصف ناقص تجاهل
+
+                if(!albums[name] ) albums[name] =[];//اول مره تشوف الالبوم انشى
+                albums[name].push(url);//نضيف الصور للالبوم
+            });
+              displayAlbums(Object.keys(albums), albums) ;//نعرض الالبومات
+              setupSearch(albums);//نفعل البحث
+
+              document.getElementById('loading').style.display='none'
+            }
+           });
+
+           function showImages(images){
+            localStorage.setItem("eventImages" , JSON.stringify(images));//نخزن الصورة
+            window.location.href='photos_album.html';//نتنقل لصفحة الثانية
+           }
+
+        //    localStorage.setItem("currentWedding" , row.Wedding);
+    </script>
+
+
+
+</body>
+</html>
