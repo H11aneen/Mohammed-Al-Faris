@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+    <div data-aos="fade-up">
+    <div id="back">
+  <!--بداية الناف بار-->        
+        <nav id="navbar">
+            <div class="navcont">
+            <div class="lglink">
+            <!-- الشعار على اليمين -->
+            <img src="logo(mo).png" class="logo" alt="الشعار">
+        
+            <!-- القائمة بجانب الشعار -->
+            <ul class="nav-links">
+                <li><a href="home.HTML">الصفحة الرئيسية</a></li>
+                <li><a href="Albums.html">المعرض</a></li>
+                <li><a href="#footer1">للتواصل</a></li>
+            </ul>
+        </div>
+            <!-- الزر على اليسار -->
+            <div class="bu1-1">
+                <button class="bureserv2" ><a style="text-decoration: none; color: #D4AF37 ;" href="Reservation.html">احجز الآن</a></button>
+            </div>
+            </div>
+        </nav>      
+        
+  <!--نهاية الناف بار-->
+  <!-- التعريف-->
+   
+<section id="hader">
+    <div class="imgs-rigt">
+        <img src="img-wedding.jpg" alt="" class="img-rigt1">
+        <img src="video-shooting.jpg" class="img-rigt2">
+    </div>
+    <div class="content1">
+        <img class="imglogo" src="logo(mo).png">
+        
+    </div>
+
+    <div class="imgs-left">
+        <img src="img-wedding.jpg" alt="" class="img-left1">
+        <img src="video-shooting.jpg" alt="" class="img-left2">
+    </div>
+
+</section>
+<div class="text">
+    <p class="Definition"> مصور فوتوغرافي ومصور جوي 
+        اوثق اجمل لحظاتكم</p>
+</div>
+<!-- نهاية التعريف-->
+
+<!--الخدمات-->
+<section id="serivces">
+    
+    <h2 class="title serivces1">خدماتنا</h2>
+
+
+    
+<div class="serivces-container" >
+    <div class="serivces1">
+        <div style="  display: flex; justify-content: center; align-items: center;">
+            <div class="card-title1"> 
+                <h2>  تصوير فوتوغرافي</h2> 
+            </div>
+        </div>
+        <div class="backcard">
+            <div class="img-wrapper">
+                <img src="img-wedding.jpg"  class="card-image">
+                    <div class="overlay"></div>
+                <p class="text1"> لقطات جوية مبهرة بروية ابداعي</p>
+            </div>
+        </div>
+        <div class="specimen1">
+           
+                <button id="btnWeddings"  class="specimen-btn">شاهد العينة</button>
+       
+           
+        </div>
+    </div>
+
+    <div class="serivces1">
+        <div style="  display: flex; justify-content: center; align-items: center;">
+            <div class="card-title1" >
+                <h2> تصوير فيديو </h2>
+            </div>
+        </div>
+        <div class="backcard">
+            <div class="img-wrapper">
+                <img src="video-shooting.jpg"  class="card-image">
+                <div class="overlay"></div>
+                <p class="text1"> تصوير احترافي يعكس أجوا الحدث بكل تفاصيله </p>
+             </div>
+        </div>
+        <div class="specimen1">
+            
+                <button  id="btnEvents"  class="specimen-btn" onclick="openSlideshow(this)">شاهد العينة</button>
+           
+           
+        </div>
+    </div>
+
+
+    <div class="serivces1">
+      <div style="  display: flex; justify-content: center; align-items: center;">
+        <div class="card-title1" >
+            <h2>  تصوير جوي(درون)</h2>
+        </div>
+    </div>
+    
+    <div class="backcard">
+        <div class="img-wrapper">
+            <img src="img-aerial.jpg"  class="card-image" >
+        
+            <div class="overlay"></div>
+            <p  class="text1"> توثيق أجمل لحظات زفافكم بعدسة احترافية</p>
+        </div>
+    </div>
+    <div class="specimen1">
+            
+        <button  id="btnAerial"  class="specimen-btn1">شاهد العينة</button>
+   
+   
+ </div>
+
+   
+    
+</div>
+  
+</section>
+
+ <!-- Slideshow container -->
+ <div id="slideshow-images" class ="slideshow-container">
+    <button id="close-images" class="close"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Full-width images with number and caption text  -->
+     <div class="mySlides fade show">
+  
+      <img id="slide1" src="" style="width:100%">
+     </div>
+
+     <div class="mySlides fade show">
+      <img id="slide2" src="" style="width:100%">
+
+     </div>
+
+     <div class="mySlides fade show">
+        
+      <img id="slide3" src="" style="width:100%">
+    
+     </div>
+     
+     <!-- Next and previous buttons -->
+     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+     <a class="next" onclick="plusSlides(1)">&#10095;</a>
+     <br>
+
+
+</div>
+
+
+<div id="slideshow-videos" class="slideshow-container">
+  <button id="close-videos"class="close"><i class="fa-solid fa-xmark"></i></button>
+ 
+  <video  class="slideshow.video1" id="videoPlayer" controls style="width:100%">
+    <source id="videoSource" src="" type="video/mp4">
+    المتصفح لا يدعم تشغيل الفيديو.
+  </video>
+  
+   <!-- Next and previous buttons -->
+   <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+   <a class="next" onclick="changeSlide(1)">&#10095;</a>
+</div>
+
+
+<!--نهاية الخدمات-->
+    <section id="number" class="number">
+        <div class="back-number" >
+            
+            <p class="textnumber">تم تصوير اكثر من </p>
+        <div class="img-number">
+            <img src="img-number.png" style="width:300px ;">
+            <div class="number2">
+            <p style=" color: rgb(253, 239, 219);">30+</p>
+            </div>
+        </div>
+        <p class="textnumber"> مناسبة و فعالية </p>
+        
+        </div>
+
+    
+
+</section>
+
+  
+    <!--الحجز-->
+<section id="Reservation" class="Reservation">
+    <div class="Reservation">
+        <h1 >حدد تاريخ مناسبتك وابدأ الحجز بكل سهولة</h1>
+      <div class="butres">  <button class="bureserv" ><a href="r2.html" ><h1>احجز الأن</h1></button></a></div>
+    </div>
+</section>
+</div>  
+</section>
+ 
+
+
+    
+        <footer class="footer" id="footer1">
+            
+            <div class="footer-logo">
+                <img class="img-footer"  src="/موقع محمد الفارس/logo(mo).png">
+            </div> 
+                <h4>للتواصل</h4>
+            <div class="ii">
+                <a href="https://www.tiktok.com/@x_idzz?_t=ZS-8taDG3Nvnxo&_r=1" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.snapchat.com/add/x_idzz" target="_blank"><i class="fa-brands fa-snapchat"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://m.youtube.com/channel/UCS-agE6_uZUu_nkFPK7ocOQ" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+
+        </footer>
+    </div>
+        <script>
+        // document.querySelectorAll(".specimen1").forEach(function(div, index) {
+        //     div.addEventListener("click", function() {
+        //       const images = JSON.parse(div.querySelector(".specimen").getAttribute("data-images"));
+        //       const carouselDiv = div.querySelector(".carousel");
+          
+        //       let indicators = "";
+        //       let items = "";
+          
+        //       images.forEach((img, i) => {
+        //         indicators += `
+        //           <button type="button" data-bs-target="#carousel${index}" data-bs-slide-to="${i}" ${i === 0 ? 'class="active"' : ''} aria-label="Slide ${i + 1}"></button>
+        //         `;
+          
+        //         items += `
+        //           <div class="carousel-item ${i === 0 ? 'active' : ''}">
+        //             <img src="${img}" class="d-block w-100" alt="صورة ${i + 1}">
+        //           </div>
+        //         `;
+        //       });
+          
+        //       carouselDiv.innerHTML = `
+        //         <div id="carousel${index}" class="carousel slide" data-bs-ride="carousel">
+        //           <div class="carousel-indicators">${indicators}</div>
+        //           <div class="carousel-inner">${items}</div>
+        //           <button class="carousel-control-prev" type="button" data-bs-target="#carousel${index}" data-bs-slide="prev">
+        //             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        //           </button>
+        //           <button class="carousel-control-next" type="button" data-bs-target="#carousel${index}" data-bs-slide="next">
+        //             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        //           </button>
+        //         </div>
+        //       `;
+        //     });
+        //   });
+
+
+       
+        const categories = {
+  weddings: ["صوره للفعاليات.jpg", "/موقع محمد الفارس/صوره للفعاليات.jpg", "/موقع محمد الفارس/صوره للفعاليات.jpg"],
+  
+  aerial: ["صوره لتصوير الجوي.jpg","صوره لتصوير الجوي.jpg","صوره لتصوير الجوي.jpg"]
+};
+let slideIndex = 1;
+
+    function showCategory(categoryName) {
+      
+      document.getElementById("slide1").src = categories[categoryName][0];
+      document.getElementById("slide2").src = categories[categoryName][1];
+      document.getElementById("slide3").src = categories[categoryName][2];
+
+      slideIndex = 1;
+      showSlides(slideIndex);
+    }
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    // function plusSlides(n) {
+    //   slideIndex += n;
+
+    //   if (slideIndex < 0) slideIndex = categories.length - 1;
+    //   if (slideIndex >= categories.length) slideIndex = 0;
+
+    //   loadmage(slideIndex);
+    // }
+
+    // function currentSlide(n) {
+    //   showSlides(slideIndex = n);
+    // }
+
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+      for (i = 0; i < slides.length ; i++) {
+        slides[i].style.display= "none";
+        
+      }
+      for (i = 0; i < 3; i++) {
+    if (slides[i]) {
+      slides[i].style.display = "block";
+    }
+  }  
+  
+  for (i = 0; i < slides.length; i++) {
+  slides[i].classList.remove("active");
+}
+slides[slideIndex - 1].classList.add("active"); // الصورة الوسطى
+document.getElementById("slideshow-container").scrollIntoView({ behavior: "smooth" });
+    
+    }
+
+    // روابط الأزرار
+    document.getElementById("btnWeddings").addEventListener("click", function () {
+  const btn = this;
+  const slideshow = document.querySelector(".slideshow-container");
+
+  // جلب مكان الزر (top & left)
+  const rect = btn.getBoundingClientRect();
+
+  // تحديد مكان السلايد بناءً على الزر
+  slideshow.style.top = `${window.scrollY + rect.top - 200}px`;
+  slideshow.style.left = `0`;
+  slideshow.style.width = `100vw`; // العرض الكامل
+
+  // عرض السلايد
+  slideshow.style.display = "flex";
+
+  // تعبئة الصور حسب الفئة، مثلاً:
+  showCategory("weddings");
+});
+
+
+document.getElementById("btnAerial").addEventListener("click", function () {
+  const btn = this;
+  const slideshow = document.querySelector(".slideshow-container");
+
+  // جلب مكان الزر (top & left)
+  const rect = btn.getBoundingClientRect();
+
+  // تحديد مكان السلايد بناءً على الزر
+  slideshow.style.top = `${window.scrollY + rect.top - 200}px`;
+  slideshow.style.left = `0`;
+  slideshow.style.width = `100vw`; // العرض الكامل
+
+  // عرض السلايد
+  slideshow.style.display = "flex";
+
+  // تعبئة الصور حسب الفئة، مثلاً:
+  showCategory("aerial");
+});
+    
+    document.getElementById("close-images").addEventListener("click" ,function (){
+        document.querySelector(".slideshow-container").style.display = "none";
+     
+    })
+    document.querySelectorAll('img').forEach(img => {
+  console.log(img.src);
+});
+
+//slide tov video
+
+const videoList = ["testw.mp4", "test2.mp4", "testw.mp4"];
+    let currentIndex = 0;
+   
+    function openSlideshow(buttonElement) {
+  const videoSlideshow = document.getElementById("slideshow-videos");
+
+  const rect = buttonElement.getBoundingClientRect();
+  
+  // مكان الظهور يكون أعلى الزر أو تحته حسب اختيارك
+  videoSlideshow.style.top = `${window.scrollY + rect.top - 200}px`;
+  videoSlideshow.style.left = `0`;
+  videoSlideshow.style.width = `100vw`; // العرض الكامل
+
+  videoSlideshow.style.position = "absolute";
+  videoSlideshow.style.display = "flex";
+
+  loadVideo(currentIndex);
+}
+
+  
+
+    function changeSlide(step) {
+      currentIndex += step;
+
+      if (currentIndex < 0) currentIndex = videoList.length - 1;
+      if (currentIndex >= videoList.length) currentIndex = 0;
+
+      loadVideo(currentIndex);
+    }
+
+    function loadVideo(index) {
+      const source = document.getElementById("videoSource");
+      const video = document.getElementById("videoPlayer");
+
+      source.src = videoList[index];
+      video.load();
+      video.play();
+    }
+  
+    document.getElementById("close-videos").addEventListener("click" ,function (){
+      document.getElementById("slideshow-videos").style.display = "none";})
+
+  
+// انميشن للخدمات
+const cards = document.querySelectorAll('.serivces1, .back-number , .Reservation');
+
+
+  cards.forEach((card, index) => {
+    card.style.animationDelay = `${index * 0.3}s`; // تأخير تلقائي
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  cards.forEach(card => {
+    observer.observe(card);
+  });
+
+  
+    </script>       
+</body>
+
+</html>
