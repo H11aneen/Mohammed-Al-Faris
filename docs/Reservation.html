@@ -30,11 +30,11 @@
                   <div class="navcont">
                   <div class="lglink">
                   <!-- الشعار على اليمين -->
-                  <img src="logo(mo).png" class="logo" alt="الشعار">
+                  <img src="logo-mo.png" class="logo" alt="الشعار">
               
                   <!-- القائمة بجانب الشعار -->
                   <ul class="nav-links">
-                    <li><a href="home.HTML">الصفحة الرئيسية</a></li>
+                    <li><a href="index.html">الصفحة الرئيسية</a></li>
                     <li><a href="Albums.html">المعرض</a></li>
                     <li><a href="#footer1">للتواصل</a></li>
                   </ul>
@@ -122,7 +122,7 @@
      <footer class="footer" id="footer1">
             
       <div class="footer-logo">
-          <img class="img-footer"  src="/موقع محمد الفارس/logo(mo).png">
+          <img class="img-footer"  src="logo-mo.png">
       </div> 
           <h4>للتواصل</h4>
       <div class="ii">
@@ -140,102 +140,128 @@
   <!-- Script -->
    <script>
     
-    
-      let currentDate = new Date();
-      let useHijri = false;
+    let currentDate = new Date(); // تخزين التاريخ الحالي
+let useHijri = false;         // حالة التقويم: هجري أو ميلادي
+const monthYearElement = document.getElementById('monthYear'); // عنصر عرض الشهر والسنة
+const datesElement = document.getElementById('dates');         // عنصر يحتوي أيام الشهر
+const selectedDateInput = document.getElementById('selectedDateInput'); // حقل التاريخ المختار
+const hijriBtn = document.getElementById('hijriBtn');          // زر التبديل للتقويم الهجري
+const miladiBtn = document.getElementById('miladiBtn');        // زر التبديل للتقويم الميلادي
+const prevBtn = document.getElementById('prevBtn');            // زر الشهر السابق
+const nextBtn = document.getElementById('nextBtn');            // زر الشهر التالي
+let disabledDates = []; // مصفوفة لتخزين التواريخ المحجوزة لمنع الاختيار
 
-      const monthYearElement = document.getElementById('monthYear');
-      const datesElement = document.getElementById('dates');
-      const selectedDateInput = document.getElementById('selectedDateInput');
-      const hijriBtn = document.getElementById('hijriBtn');
-      const miladiBtn = document.getElementById('miladiBtn');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      let disabledDates = [];
-
-      async function fetchDisabledDates() {
+// -------------------------
+// جلب التواريخ المحجوزة مرة واحدة فقط
+// -------------------------
+async function fetchDisabledDates() {
   try {
+    // استدعاء رابط Google Script للحصول على التواريخ المحجوزة
     const response = await fetch('https://script.google.com/macros/s/AKfycbwoGKyPVthp5el4z8ZhV2IMA4c6vSxFi_cY61E_hpAUwYD04n2b-ubnSntj0oXebcjVHw/exec');
-    const data = await response.json();
+    const data = await response.json(); // تحويل الاستجابة إلى JSON
 
-    // نحول كل تاريخ إلى توقيت محلي ثم نأخذ yyyy-mm-dd بصيغة ثابتة
+    // تحويل كل تاريخ إلى صيغة YYYY-MM-DD لتسهيل المقارنة لاحقًا
     disabledDates = data.map(d => {
       const localDate = new Date(d);
-      return localDate.toLocaleDateString('sv-SE'); // يرجع YYYY-MM-DD تلقائيًا
+      return localDate.toLocaleDateString('sv-SE'); // sv-SE يعطي YYYY-MM-DD
     });
-
-    updateCalendar(); // بعد تحميل البيانات حدث التقويم ليعكس التغييرات
   } catch (error) {
-    console.error("Failed to fetch disabled dates:", error);
+    console.error("Failed to fetch disabled dates:", error); // عرض أي خطأ في console
   }
 }
 
-
+// -------------------------
+// تحديث التقويم وعرض الأيام
+// -------------------------
 function updateCalendar() {
-  datesElement.innerHTML = '';
+  datesElement.innerHTML = ''; // تفريغ التقويم القديم قبل إعادة البناء
   let firstDay, totalDays;
 
   if (useHijri) {
-    const hijriMoment = moment(currentDate).locale('ar-SA').startOf('iMonth');
-    firstDay = hijriMoment.day();
-    totalDays = hijriMoment.iDaysInMonth();
-    monthYearElement.textContent = hijriMoment.format('iMMMM iYYYY هـ');
+    // إذا التقويم هجري
+    const hijriMoment = moment(currentDate).locale('ar-SA').startOf('iMonth'); // بداية الشهر الهجري
+    firstDay = hijriMoment.day();       // يوم بداية الشهر (0-6)
+    totalDays = hijriMoment.iDaysInMonth(); // عدد أيام الشهر الهجري
+    monthYearElement.textContent = hijriMoment.format('iMMMM iYYYY هـ'); // عرض الشهر والسنة الهجرية
   } else {
+    // إذا التقويم ميلادي
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
-    const firstDate = new Date(year, month, 1);
-    firstDay = firstDate.getDay();
-    totalDays = new Date(year, month + 1, 0).getDate();
+    const firstDate = new Date(year, month, 1); // أول يوم من الشهر
+    firstDay = firstDate.getDay();              // يوم بداية الشهر
+    totalDays = new Date(year, month + 1, 0).getDate(); // عدد أيام الشهر الميلادي
     const miladiDate = currentDate.toLocaleDateString('ar-EG', { year: 'numeric', month:'long' });
-    monthYearElement.textContent = miladiDate;
+    monthYearElement.textContent = miladiDate; // عرض الشهر والسنة الميلادية
   }
 
+  // -------------------------
+  // إضافة خانات فارغة قبل أول يوم من الشهر
+  // -------------------------
   for (let i = 0; i < firstDay; i++) {
     const emptyCell = document.createElement('div');
     emptyCell.className = 'date empty';
     datesElement.appendChild(emptyCell);
   }
 
+  // -------------------------
+  // إنشاء أيام الشهر
+  // -------------------------
   for (let i = 1; i <= totalDays; i++) {
     const dayDiv = document.createElement('div');
     dayDiv.classList.add('date');
     dayDiv.textContent = i;
 
-    const today = moment().startOf('day');
+    const today = moment().startOf('day'); // اليوم الحالي لتحديده في التقويم
     let dateMoment;
 
     if (useHijri) {
+      // حساب التاريخ الهجري
       const hijri = moment(currentDate).startOf('iMonth').iDate(i);
       dateMoment = moment(`${hijri.iYear()}-${hijri.iMonth() + 1}-${i}`, 'iYYYY-iM-iD');
     } else {
+      // التاريخ الميلادي
       dateMoment = moment(new Date(currentDate.getFullYear(), currentDate.getMonth(), i));
     }
-    fetchDisabledDates();
-    const dateString = dateMoment.format('YYYY-MM-DD');
 
-    // ⭐️ التواريخ المحجوزة
+    const dateString = dateMoment.format('YYYY-MM-DD'); // صيغة ثابتة للمقارنة
+
+    // -------------------------
+    // تعطيل الأيام المحجوزة
+    // -------------------------
     if (disabledDates.includes(dateString)) {
-        dayDiv.classList.add('disabled');
-        dayDiv.textContent = i + " (محجوز)";
-        dayDiv.style.backgroundColor = '#eee';
-        dayDiv.style.color = '#aaa';
-        dayDiv.style.cursor = 'not-allowed';
-      }
-      // ⭐️ التواريخ القديمة (أمس وما قبله)
+      dayDiv.classList.add('disabled');
+      dayDiv.textContent = i + " (محجوز)";
+      dayDiv.style.backgroundColor = '#eee';
+      dayDiv.style.color = '#aaa';
+      dayDiv.style.cursor = 'not-allowed';
+    } 
+    // -------------------------
+    // تعطيل الأيام السابقة لليوم الحالي
+    // -------------------------
     else if (dateMoment.isBefore(today, useHijri ? 'iDate' : 'day')) {
       dayDiv.classList.add('disabled');
       dayDiv.style.color = '#aaa';
       dayDiv.style.cursor = 'not-allowed';
     }
 
-    // ⭐️ اليوم الحالي
+    // تمييز اليوم الحالي
     if (dateMoment.isSame(today, useHijri ? 'iDate' : 'day')) {
       dayDiv.classList.add('today');
     }
 
-    datesElement.appendChild(dayDiv);
+    datesElement.appendChild(dayDiv); // إضافة اليوم للتقويم
   }
 }
+
+// -------------------------
+// استدعاء fetch مرة واحدة عند تحميل الصفحة
+// -------------------------
+async function initCalendar() {
+  await fetchDisabledDates(); // جلب التواريخ المحجوزة
+  updateCalendar();           // عرض التقويم
+}
+initCalendar(); // التنفيذ عند التحميل
+
 
 document.addEventListener('click', function (e) {
   if (e.target.classList.contains('date') &&
