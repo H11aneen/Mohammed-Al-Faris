@@ -176,11 +176,8 @@
 
 <div id="slideshow-videos" class="slideshow-container">
   <button id="close-videos"class="close"><i class="fa-solid fa-xmark"></i></button>
+  <div id="videoContainer"></div>
  
-  <video  class="slideshow.video1" id="videoPlayer" controls style="width:100%">
-    <source id="videoSource" src="" type="video/mp4">
-    المتصفح لا يدعم تشغيل الفيديو.
-  </video>
   
    <!-- Next and previous buttons -->
    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
@@ -277,7 +274,7 @@
         const categories = {
   weddings: ["img_wedding.jpg", "img_wedding.jpg", "img_wedding.jpg"],
   
-  aerial: ["https://res.cloudinary.com/dwtkchcwn/image/upload/v1756132662/1Z6A8893_h7zbir.jpg" , "img_aerial.jpg" ,"img_aerial.jpg"]
+  aerial: ["img_aerial.jpg" , "img_aerial.jpg" ,"img_aerial.jpg"]
 };
 let slideIndex = 1;
 
@@ -381,7 +378,9 @@ document.getElementById("btnAerial").addEventListener("click", function () {
 
 //slide tov video
 
-const videoList = ["https://youtu.be/HhsWGO9HDXU", "https://youtu.be/HhsWGO9HDXU", "https://youtu.be/HhsWGO9HDXU"];
+const videoList = [ "https://www.youtube.com/embed/HhsWGO9HDXU",
+  "https://www.youtube.com/embed/HhsWGO9HDXU",
+  "https://www.youtube.com/embed/HhsWGO9HDXU"];
     let currentIndex = 0;
    
     function openSlideshow(buttonElement) {
@@ -411,14 +410,21 @@ const videoList = ["https://youtu.be/HhsWGO9HDXU", "https://youtu.be/HhsWGO9HDXU
       loadVideo(currentIndex);
     }
 
-    function loadVideo(index) {
-      const source = document.getElementById("videoSource");
-      const video = document.getElementById("videoPlayer");
+   
 
-      source.src = videoList[index];
-      video.load();
-      video.play();
-    }
+    function loadVideo(index) {
+  const videoSlideshow = document.getElementById("videoContainer");
+
+  // استبدال محتوى الفيديو الحالي بـ iframe جديد لكل رابط
+  videoSlideshow.innerHTML = `
+    <iframe // 300 بكسل للجوال، 500 للكمبيوتر
+      src="${videoList[index]}"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  `;
+}
   
     document.getElementById("close-videos").addEventListener("click" ,function (){
       document.getElementById("slideshow-videos").style.display = "none";})
