@@ -405,7 +405,7 @@ body {
   padding: 10px; 
   transform: translateY(-1rem);
   box-shadow: 0 0 10px rgba(16, 4, 4, 0.5); 
-  border: none;
+  border: 3px solid rgb(190, 190, 190);
   color: #ddc061;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1100,14 +1100,14 @@ transform: translateX(-70%);
 
 .Definition {
   font-size: 1rem; /* حجم متجاوب للنص */
-  padding-top: 1rem;
+  padding-top: 0.8rem;
   color: #000;
   line-height: 1.6;
   display: flex;
   justify-content: center;
   margin-bottom: 5rem;
   word-wrap: break-word;
-  margin: 0rem 7rem;
+  margin: 0rem 6.5rem;
   
 }
 
@@ -1119,7 +1119,9 @@ width: 140px;
 
 /* قسم الخدمات */
 
-
+#serivces{
+  margin-top: 6rem;
+}
 
 .serivces-container {
   display: flex;
@@ -1226,9 +1228,10 @@ width: 140px;
   box-shadow: 0 0 10px rgba(16, 4, 4, 0.5); 
   font-weight: 800;
   border: none;
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin-right: auto auto;
   cursor: pointer;
+  border: 2.5px solid rgb(190, 190, 190);
   
 }
 
@@ -1254,7 +1257,7 @@ width: 140px;
 }
 .number2{
   position: absolute;
-  top: 50%;
+  top: 52%;
   left: 55%;
   transform: translate(-50% , -40%);
   font-size: 2rem;
@@ -1278,6 +1281,7 @@ font-size: 20px;
 }
 #Reservation h1{
    font-size: 1rem;
+   margin-top: 4%;
 }
 .butres{
    display: flex;
