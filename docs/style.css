@@ -1257,7 +1257,7 @@ width: 140px;
 }
 .number2{
   position: absolute;
-  top: 52%;
+  top: 53%;
   left: 55%;
   transform: translate(-50% , -40%);
   font-size: 2rem;
@@ -1281,7 +1281,7 @@ font-size: 20px;
 }
 #Reservation h1{
    font-size: 1rem;
-   margin-top: 4%;
+   margin-top: 5%;
 }
 .butres{
    display: flex;
