@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الصفحة الرئيسية</title>
+    <meta name="description" content="محمد الفارس - مصور فوتوغرافي متخصص في  تصوير الزواجات والمناسبات ">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
@@ -26,7 +27,7 @@
             <div class="navcont">
             <div class="lglink">
             <!-- الشعار على اليمين -->
-            <img src="logomo.png" class="logo" alt="الشعار">
+            <img loading="lazy" src="logomo.png" class="logo" alt="الشعار">
         
             <!-- القائمة بجانب الشعار -->
             <ul class="nav-links">
@@ -44,11 +45,11 @@
         
   <!--نهاية الناف بار-->
   <!-- التعريف-->
-   
+   <h1 class="visually-hidden">محمد الفارس | مصور فوتوغرافي </h1>
 <section id="hader">
     <div class="imgs-rigt">
-        <img src="imgwedding.jpg" alt="" class="img-rigt1">
-        <img src="imgshooting.jpg" class="img-rigt2">
+        <img  loading="lazy" src="imgwedding.jpg" alt="" class="img-rigt1">
+        <img  loading="lazy" src="imgshooting.jpg" class="img-rigt2">
     </div>
     <div class="content1">
         <img class="imglogo" src="logomo.png">
@@ -56,8 +57,8 @@
     </div>
 
     <div class="imgs-left">
-        <img src="imgwedding.jpg" alt="" class="img-left1">
-        <img src="imgshooting.jpg" alt="" class="img-left2">
+        <img  loading="lazy" src="imgwedding.jpg" alt="" class="img-left1">
+        <img   loading="lazy" src="imgshooting.jpg" alt="" class="img-left2">
     </div>
 
 </section>
@@ -85,7 +86,7 @@
         </div>
         <div class="backcard">
             <div class="img-wrapper">
-                <img src="imgwedding.jpg"  class="card-image">
+                <img   loading="lazy" src="imgwedding.jpg"  class="card-image">
                     <div class="overlay"></div>
                 <p class="text1"> لقطات جوية مبهرة بروية ابداعي</p>
             </div>
@@ -106,7 +107,7 @@
         </div>
         <div class="backcard">
             <div class="img-wrapper">
-                <img src="imgshooting.jpg"  class="card-image">
+                <img  loading="lazy" src="imgshooting.jpg"  class="card-image">
                 <div class="overlay"></div>
                 <p class="text1"> تصوير احترافي يعكس أجوا الحدث بكل تفاصيله </p>
              </div>
@@ -129,7 +130,7 @@
     
     <div class="backcard">
         <div class="img-wrapper">
-            <img src="imgaerial.jpg"  class="card-image" >
+            <img   loading="lazy" src="imgaerial.jpg"  class="card-image" >
         
             <div class="overlay"></div>
             <p  class="text1"> توثيق أجمل لحظات زفافكم بعدسة احترافية</p>
@@ -194,7 +195,7 @@
             
             <p class="textnumber">تم تصوير اكثر من </p>
         <div class="img-number">
-            <img src="imgnumber.png" style="width:300px ;">
+            <img  loading="lazy" src="imgnumber.png" style="width:300px ;">
             <div class="number2">
             <p style=" color: rgb(253, 239, 219);">30+</p>
             </div>
@@ -327,7 +328,7 @@ let slideIndex = 1;
   slides[i].classList.remove("active");
 }
 slides[slideIndex - 1].classList.add("active"); // الصورة الوسطى
-document.getElementById("slideshow-container").scrollIntoView({ behavior: "smooth" });
+document.getElementById("slideshow-images").scrollIntoView({ behavior: "smooth" });
     
     }
 
@@ -343,7 +344,7 @@ document.getElementById("slideshow-container").scrollIntoView({ behavior: "smoot
   slideshow.style.top = `${window.scrollY + rect.top - 200}px`;
   slideshow.style.left = `0`;
   slideshow.style.width = `100vw`; // العرض الكامل
-
+ 
   // عرض السلايد
   slideshow.style.display = "flex";
 
@@ -378,6 +379,35 @@ document.getElementById("btnAerial").addEventListener("click", function () {
     document.querySelectorAll('img').forEach(img => {
   console.log(img.src);
 });
+ // -------------------------
+// دعم اللمس (Swipe) للسلايد شو
+// -------------------------
+
+let startX=0;
+let endX=0;
+
+const slideshowContainer = document.querySelector(".slideshow-container");
+
+slideshowContainer.addEventListener('touchstart', function(e){
+  startX = e.touches[0].clientX;
+});
+ 
+slideshowContainer.addEventListener("touchend" , function(e){
+  endX = e.changedTouches[0].clientX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const threshold = 30; // الحد الأدنى لمسافة السحب لتعتبر Swipe
+
+  if(endX - startX > threshold){
+    // سحب لليمين → الصورة السابقة
+    plusSlides(-1)
+  }else if (startX - endX > threshold){
+     // سحب لليسار → الصورة التالية
+    plusSlides(1)
+  }
+}
 
 //slide tov video
 
@@ -456,7 +486,9 @@ const cards = document.querySelectorAll('.serivces1, .back-number , .Reservation
     observer.observe(card);
   });
 
-  
+  let autoSlideInterval;
+
+
     </script>       
 </body>
 
